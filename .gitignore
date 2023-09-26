@@ -1,3 +1,5 @@
 .DS_Store
 AnnouncementsApi/obj/project.nuget.cache
 AnnouncementsApi/obj/**
+AnnouncementsApi/bin/**
+.vs/AnnouncementsApi/xs/project-cache/AnnouncementsApi-Debug.json
