@@ -41,14 +41,11 @@ namespace AnnouncementsApi.Services
                 orderByDesc = queryParameters.OrderBy.Split(' ').Last().ToLowerInvariant().StartsWith("desc");
             }
 
-            IQueryable<Announcement> items;
+            IQueryable<Announcement> items = _dbContext.Announcements.Where(x => x.EndDate == null || x.EndDate > DateTime.UtcNow);
 
             if(orderByDesc == true)
             {
-                items = _dbContext.Announcements.OrderByDescending(x => x.StartDate);
-            } else
-            {
-                items = _dbContext.Announcements.AsQueryable();
+                items = items.OrderByDescending(x => x.StartDate);
             }
 
             if(!string.IsNullOrEmpty(queryParameters.Query))
