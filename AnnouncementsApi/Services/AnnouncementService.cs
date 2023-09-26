@@ -15,32 +15,82 @@ namespace AnnouncementsApi.Services
 
         public EntityEntry<Announcement> Create(Announcement model)
         {
-            throw new NotImplementedException();
+            return _dbContext.Announcements.Add(model);
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var model = _dbContext.Announcements.FirstOrDefault(x => x.Id == id);
+
+            if(model == null)
+            {
+                return false;
+            }
+
+            _dbContext.Announcements.Remove(model);
+
+            return true;
         }
 
         public IQueryable<Announcement> GetAll(QueryParameters queryParameters)
         {
-            throw new NotImplementedException();
+            bool? orderByDesc = null;
+
+            if(!string.IsNullOrEmpty(queryParameters.OrderBy))
+            {
+                orderByDesc = queryParameters.OrderBy.Split(' ').Last().ToLowerInvariant().StartsWith("desc");
+            }
+
+            IQueryable<Announcement> items;
+
+            if(orderByDesc == true)
+            {
+                items = _dbContext.Announcements.OrderByDescending(x => x.StartDate);
+            } else
+            {
+                items = _dbContext.Announcements.AsQueryable();
+            }
+
+            if(!string.IsNullOrEmpty(queryParameters.Query))
+            {
+                items = items.Where(x => x.Author.ToLowerInvariant().Contains(queryParameters.Query.ToLowerInvariant())
+                    || x.Body.ToLowerInvariant().Contains(queryParameters.Query.ToLowerInvariant())
+                    || x.Subject.ToLowerInvariant().Contains(queryParameters.Query.ToLowerInvariant()));
+            }
+
+            return items.Skip(queryParameters.PageCount * (queryParameters.Page - 1))
+                .Take(queryParameters.PageCount);
         }
 
         public Announcement? GetSingle(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Announcements.FirstOrDefault(x => x.Id == id);
         }
 
-        public Task<int> Save()
+        public async Task<int> Save()
         {
-            throw new NotImplementedException();
+            return await _dbContext.SaveChangesAsync();
         }
 
         public Announcement? Update(Announcement model)
         {
-            throw new NotImplementedException();
+            var first = _dbContext.Announcements.FirstOrDefault(x => x.Id == model.Id);
+            if(first == null)
+            {
+                return null;
+            }
+
+            // TODO: Find a better way to do this for all models/entities if doing more than just Announcements.
+
+            first.Author = model.Author;
+            first.Body = model.Body;
+            first.EndDate = model.EndDate;
+            first.StartDate = model.StartDate;
+            first.Subject = model.Subject;
+
+            _dbContext.Announcements.Update(first);
+
+            return first;
         }
     }
 }

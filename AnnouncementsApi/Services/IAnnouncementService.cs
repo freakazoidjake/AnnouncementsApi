@@ -1,5 +1,4 @@
-﻿using System;
-using AnnouncementsApi.Models;
+﻿using AnnouncementsApi.Models;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace AnnouncementsApi.Services
