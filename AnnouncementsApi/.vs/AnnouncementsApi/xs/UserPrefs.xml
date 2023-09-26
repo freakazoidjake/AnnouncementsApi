@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{FFCB3D92-CC97-410E-B3C2-E2440D5F63C1}|https">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AnnouncementsApi/Dtos/AnnouncementDto.cs">
+    <Files>
+      <File FileName="AnnouncementsApi/Dtos/AnnouncementDto.cs" Line="7" Column="4" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AnnouncementsApi" expanded="True">
+            <Node name="AnnouncementsApi">
+              <Node name="Dtos" expanded="True">
+                <Node name="AnnouncementDto.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.AnnouncementsApi FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
