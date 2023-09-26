@@ -6,8 +6,11 @@ namespace AnnouncementsApi.Services
 {
 	public class AnnouncementService: IAnnouncementService
 	{
-		public AnnouncementService()
+        private readonly AnnouncementDbContext _dbContext;
+
+		public AnnouncementService(AnnouncementDbContext dbContext)
 		{
+            _dbContext = dbContext;
 		}
 
         public EntityEntry<Announcement> Create(Announcement model)
